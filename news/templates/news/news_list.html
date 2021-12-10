@@ -1,0 +1,49 @@
+{% extends './base.html' %}
+{% block title %}
+<h1 class="text-center">{{title}}</h1>
+{% endblock  %}
+{% block content %}
+    <div class="news">
+        {% if news %} 
+            <div>
+                {% for single_news in news %}
+                    <div class="single_news">
+                        <a href={% if single_news.url %}{{single_news.url}} {% else %} ""{% endif %}>
+                            <span class="news_count">{{forloop.counter0|add:news.start_index }}.</span>
+                            <h4 class="news_title">{{single_news.title}}</h4>
+                        </a>
+                        <span class="metadata">
+                            {% if single_news.type == "story" %}
+                                <span class="type story">{{single_news.type}}</span> | 
+                            {% elif single_news.type == "job" %}
+                                <span class="type job">{{single_news.type}}</span> | 
+                            {% else %}
+                                <span class="type">{{single_news.type}}</span> | 
+                            {% endif %}
+                            <span class="time">{{single_news.time}}</span> 
+                            <span class="comments"><a href="{% url 'details' id=single_news.id %}">{{single_news.kids|length}} Comments<a/></span>
+                        </span>
+                    </div>
+                {% endfor %}
+                    <div class="pagination">
+                        <span class="step-links">
+                                {% if news.has_previous %}
+                                    <a class="pagination-link" href="?page=1">&laquo; first</a>
+                                    <a class="pagination-link" href="?page={{ news.previous_page_number }}">previous</a>
+                                {% endif %}
+                        
+                                <span class="current">
+                                    Page {{ news.number }} of {{ news.paginator.num_pages }}.
+                                </span> {% if news.has_next %}
+                        <a class="pagination-link"  href="?page={{ news.next_page_number }}">next</a>
+                        <a class="pagination-link"  href="?page={{ news.paginator.num_pages }}">last &raquo;</a> {% endif %}
+                        </span>
+                    </div>
+            </div>
+        {% else %} 
+            <div class="text-center mt-5">
+                <p style="font-weight:bold; font-size:20px">No News Found.</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock  %}
