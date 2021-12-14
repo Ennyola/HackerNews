@@ -22,6 +22,7 @@ def get_searched_item(request, news, context):
         if news:
             context['news'] = paginate_data(request, news)
             context['searched'] = True
+            context['title'] = f"search - {query}"
     else:
         context['news'] = paginate_data(request, news)
     return context
