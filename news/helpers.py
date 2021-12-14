@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from .models import News
+from .models import Item
 # contains all utility functions
 
 
@@ -18,7 +18,7 @@ def get_searched_item(request, news, context):
 
     query = request.GET.get('search', None)
     if query:
-        news = News.objects.filter(title__icontains=query).order_by('-id')
+        news = Item.objects.filter(title__icontains=query).order_by('-id')
         if news:
             context['news'] = paginate_data(request, news)
             context['searched'] = True

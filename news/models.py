@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 
 
-class News(models.Model):
+class Item(models.Model):
     id = models.IntegerField(unique=True, primary_key=True)
     by = models.CharField(max_length=500, blank=True, null=True)
     title = models.CharField(max_length=500, blank=True, null=True)

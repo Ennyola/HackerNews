@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import mixins
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR
-from news.models import News
+from news.models import Item
 from .serializers import NewsSerializer
 from .helpers import check_for_news, check_for_max_item
 
@@ -12,14 +12,14 @@ from .helpers import check_for_news, check_for_max_item
 
 class GetNews(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin):
     serializer_class = NewsSerializer
-    queryset = News.objects.all()
+    queryset = Item.objects.all()
     lookup_field = 'id'
 
     def get_queryset(self):
         """
         Filters the news based on title, type and author(by)
         """
-        queryset = News.objects.all()
+        queryset = Item.objects.all()
         title = self.request.query_params.get('title', None)
         type = self.request.query_params.get('type', None)
         by = self.request.query_params.get('by', None)
