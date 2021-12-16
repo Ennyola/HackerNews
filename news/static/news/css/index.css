@@ -1,10 +1,10 @@
 body {
-    background: linear-gradient(to bottom, #0af 0, #000 1em) no-repeat #000;
+    background: linear-gradient(to bottom, #0af 0, rgb(11, 18, 48) 1em) no-repeat #000;
     color: white;
 }
 
 header {
-    background-color: rgb(39, 37, 37);
+    background-color: rgb(31, 10, 80);
     padding: 10px 40px;
     position: fixed;
     top: 0;
@@ -102,6 +102,7 @@ form input:nth-child(2):hover {
     background-color: orange;
     padding: 1px 10px;
     border-radius: 3px;
+    color: white;
 }
 
 .job {
@@ -111,7 +112,6 @@ form input:nth-child(2):hover {
 
 .story {
     background-color: orange !important;
-    color: black;
 }
 
 .comments {
@@ -160,4 +160,13 @@ form input:nth-child(2):hover {
 .pagination-link {
     margin: 0px 5px;
     text-decoration: none;
+}
+
+@media(max-width:666px) {
+    form {
+        margin-top: 10px;
+    }
+    .body-title {
+        padding: 40px 0px;
+    }
 }

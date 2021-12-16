@@ -18,7 +18,7 @@ def get_searched_item(request, news, context):
 
     query = request.GET.get('search', None)
     if query:
-        news = Item.objects.filter(title__icontains=query).order_by('-id')
+        news = Item.objects.filter(title__icontains=query)
         if news:
             context['news'] = paginate_data(request, news)
             context['searched'] = True

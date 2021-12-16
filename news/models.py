@@ -19,13 +19,8 @@ class Item(models.Model):
     parent = models.IntegerField(blank=True, null=True)
     text = models.TextField(blank=True, null=True)
 
-    # @property
-    # def time(self):
-    #     return datetime.utcfromtimestamp(self._time).strftime('%Y-%m-%d %H:%M:%S')
-
-    # @time.setter
-    # def time(self, time):
-    #     self._time = time
+    class Meta:
+        ordering = ['-id']
 
     def __str__(self):
         return self.title

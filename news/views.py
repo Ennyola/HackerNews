@@ -8,7 +8,7 @@ from .helpers import get_searched_item
 
 def list_news(request):
     # fetch all news from database
-    news = Item.objects.all().order_by('-id')
+    news = Item.objects.all()
     context = {'title': 'Latest News'}
     get_searched_item(request, news, context)
     return render(request, "news/news_list.html", context)
@@ -16,7 +16,7 @@ def list_news(request):
 
 def type_story(request):
     # filters news with type story
-    news = Item.objects.filter(type="story").order_by('-id')
+    news = Item.objects.filter(type="story")
     context = {'title': 'Story'}
     get_searched_item(request, news, context)
     return render(request, "news/news_list.html", context)
@@ -24,7 +24,7 @@ def type_story(request):
 
 def type_job(request):
     # filters news with type job
-    news = Item.objects.filter(type="job").order_by('-id')
+    news = Item.objects.filter(type="job")
     context = {'title': 'Job'}
     get_searched_item(request, news, context)
     return render(request, "news/news_list.html", context)
