@@ -1,0 +1,49 @@
+{% extends './base.html' %}
+
+{% block nav %}
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <h3>HackerNews</h3>
+        </a>
+        <div class="links">
+            {% with request.resolver_match.url_name as url_name %}
+                <ul class="nav-links">
+                    <li><a href="{% url 'ask' %}" class="{% if url_name == 'ask' %}active{% endif %}">Ask</a></li>
+                    <li><a href="{% url 'show' %}" class="{% if url_name == 'show' %}active{% endif %}">Show</a></li>
+                    <li><a href="{% url 'job' %}" class="{% if url_name == 'job' %}active{% endif %}">Jobs</a></li>
+                </ul>
+            {% endwith %}
+        </div>
+    </nav>
+{% endblock  %}
+
+{% block content %}
+    <div class="news-header">
+        <a href = {{news.url}} class="news-title">{{news.title|upper}}</a>
+        <span class="news-metadata">
+            <p>by-{{news.by|upper}}</p>
+            <p>{{news.time}}</p>
+        </span>
+    </div>
+    <div class="comments">
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Check Comments
+            </a>
+        </p>
+        <div class="collapse comments" id="collapseExample">
+            {% if comments %} 
+                {% for comment in comments %}
+                    <div class="card card-body">
+                        <p class="comments-by">{{comment.by}}</p>
+                        <p class="comment-text"> {{comment.text}}</p><br>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="card card-body">
+                    <p>No Comments</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock  %}
