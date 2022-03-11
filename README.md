@@ -2,7 +2,6 @@
 A cron job implemented in django that syncs the db with data gotten from an API every 5 minutes.
 
 
-
 - Create a virtual Environment using virtualenv or pipenv
 
 - cd into the root directory of the project (The same directory where you can see manage.py and requirements.txt)
